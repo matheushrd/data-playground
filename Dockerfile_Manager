@@ -1,0 +1,2 @@
+FROM docker.io/apachepulsar/pulsar-manager:latest
+ENV SPRING_CONFIGURATION_FILE=/pulsar-manager/pulsar-manager/application.properties
