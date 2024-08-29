@@ -14,7 +14,7 @@ RUN pip install pandas apache-airflow-providers-postgres[amazon] psycopg2-binary
 # Configurações do Airflow
 ENV AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql://admin:admin@localhost:5432/airflowdb
 ENV AIRFLOW__CORE__EXECUTOR=LocalExecutor
-ENV AIRFLOW__WEBSERVER__SECRET_KEY=JqneAcHPqWqzQd9P2/nzHld925v025a+
+ENV AIRFLOW__WEBSERVER__SECRET_KEY=eQ+f1e06XhEbr2n5bHINjzLywTXxycEI
 ENV AIRFLOW__WEBSERVER__BASE_URL=http://localhost:8080/airflow
 ENV AIRFLOW__WEBSERVER__ENABLE_PROXY_FIX=True
 

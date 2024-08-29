@@ -76,6 +76,8 @@ podman run -d -p 6650:6650 -p 8080:8080 --network pulsar \
 
 echo "Pulsar cluster has been successfully started."
 
+podman cp config-postgres-debezium.yml broker:/pulsar/bin/
+
 # Build the custom Pulsar Manager image with Podman
 echo "Starting Pulsar Manager..."
 podman run -d \
@@ -90,10 +92,11 @@ podman run -d \
 echo "Pulsar Manager has been successfully started."
 echo "Access Pulsar Manager at http://localhost:9527"
 
+sleep 10
 # Update superuser credentials in Pulsar Manager
 echo "Updating superuser credentials..."
 CSRF_TOKEN=$(curl -s http://localhost:7750/pulsar-manager/csrf-token)
-curl -s \
+bash curl -s \
    -H 'X-XSRF-TOKEN: $CSRF_TOKEN' \
    -H 'Cookie: XSRF-TOKEN=$CSRF_TOKEN;' \
    -H "Content-Type: application/json" \
@@ -101,3 +104,7 @@ curl -s \
    -d '{"name": "admin", "password": "apachepulsar", "description": "test", "email": "username@test.org"}'
 
 echo "Superuser credentials updated."
+
+
+echo "Starting Debezium Connector for PostgreSQL using JSON configuration..."
+podman exec -it broker /bin/bash -c "cd /pulsar/bin && ./pulsar-admin source localrun --source-config-file /pulsar/bin/config-postgres-debezium.yml"

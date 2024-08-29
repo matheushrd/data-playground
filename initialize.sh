@@ -22,6 +22,9 @@ sleep 5
 
 bash glue_init.sh
 
+sleep 5
+
+bash pulsar_init.sh
 
 sleep 5
 # Criar um arquivo de configuração do Nginx para o proxy reverso

@@ -1,4 +1,6 @@
-FROM docker.io/apachepulsar/pulsar:3.3.1
-# Set environment variables for username and password
-ENTRYPOINT ["bin/pulsar"]
-CMD ["standalone"]
+# Use AWS Glue libraries image
+FROM docker.io/amazon/aws-glue-libs:glue_libs_4.0.0_image_01
+
+# Set up the entry point for the container
+ENTRYPOINT ["/home/glue_user/spark/bin/spark-class"]
+CMD ["org.apache.spark.deploy.history.HistoryServer"]

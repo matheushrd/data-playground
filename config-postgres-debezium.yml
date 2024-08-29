@@ -1,0 +1,25 @@
+tenant: "public"
+namespace: "default"
+name: "debezium-postgres-source"
+topicName: "debezium-postgres-topic"
+archive: "connectors/pulsar-io-debezium-postgres-3.3.1.nar"
+parallelism: 1
+
+configs:
+  plugin.name: "pgoutput"
+  ## config for pg, docker image: debezium/example-postgress:0.8
+  database.hostname: "postgres"
+  database.port: "5432"
+  database.user: "admin"
+  database.password: "admin"
+  database.dbname: "mydatabase"
+  database.server.name: "dbserver1"
+  schema.whitelist: "public"
+  schema.include.list: "public"
+  table.include.list: "public.clientes,public.itens,public.pedidos,public.itens_pedidos"
+  ## PULSAR_SERVICE_URL_CONFIG
+  snapshot.mode: "initial"
+  slot.name: "debezium_slot"
+  pulsar.service.url: "pulsar://broker:6650"
+  provide.transaction.metadata: true
+  tombstones.on.delete: false
