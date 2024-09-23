@@ -1,0 +1,13 @@
+jsonschema
+dbt-core
+attrs
+snowplow_tracker
+psycopg2-binary 
+dbt-core==1.8.1 
+dbt-athena-community==1.8.1 
+dbt-redshift==1.8.1 
+--no-binary dbt-postgres==1.8.1 
+dbt-trino==1.8.1
+pulsar-client
+jupyter
+Faker
